@@ -34,19 +34,18 @@ public class CSVByteArrayItemReader implements ItemReader<Record> {
             if (headers == null) {
                 headers = line.split(",");
                 ((DelimitedLineTokenizer) tokenizer).setNames(headers);
-                continue; // Read next line after headers
+                continue;
             }
 
             try {
                 FieldSet fieldSet = tokenizer.tokenize(line);
                 return mapFieldSetToRecord(fieldSet);
             } catch (IncorrectTokenCountException e) {
-                // Log and skip lines with incorrect token count
                 System.err.println("Skipping line due to incorrect token count: " + line);
                 continue;
             }
         }
-        return null; // End of file
+        return null;
     }
 
     private Record mapFieldSetToRecord(FieldSet fieldSet) {
