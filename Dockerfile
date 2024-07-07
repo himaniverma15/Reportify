@@ -1,4 +1,9 @@
-FROM openjdk:8-jre-slim
-VOLUME /tmp
+FROM amazoncorretto:8
+
+WORKDIR /app
+
 COPY build/libs/reportify.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
