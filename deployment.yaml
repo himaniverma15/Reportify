@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reportify
+  labels:
+    app: reportify
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reportify
+  template:
+    metadata:
+      labels:
+        app: reportify
+    spec:
+      containers:
+        - name: reportify
+          image: <aws_account_id>.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/reportify:latest
+          ports:
+            - containerPort: 8080
